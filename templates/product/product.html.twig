@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+       <div class="container mt-5">
+        <h2>Edytujesz "{{singleContent.name}}"</h2>
+
+        <div class="table-responsive">
+        <table class="mt-5 table table-hover ">
+        <thead>
+            <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nazwa</th>
+            <th scope="col">Ilość</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            <th scope="row"> {{singleContent.id}}</th>
+            <td>{{singleContent.name}}</td>
+            <td>{{singleContent.amount}}</td>
+            <td class="d-flex">
+                <div class="pe-3">
+                    <a href="/product/edit/{{ singleContent.id }}"><button type="button" class="btn btn-primary">Edytuj</button></a>
+                </div>
+                <div>
+                    <a href="#"><button type="button" class="btn btn-danger">Usuń</button></a>
+                </div>
+            </td>
+            </tr>
+        
+
+        </tbody>
+        </table>
+    </div>
+    </div>
+   
+    
+    
+   
+{% endblock %}
