@@ -1,9 +1,26 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+
+
+        {% for message in app.flashes('success') %}
+            <div class="container">
+                <div class="alert alert-success mt-3">
+                    {{ message }}
+                </div>
+            </div>
+        {% endfor %}
+
     <div class="container mt-5">
         <h2>Wszystkie produkty:</h2>
 
+        <div>
+        <span class="me-4">Pokaż:</span>
+        <a href="/"><span class="me-3">Wszystkie</span></a>
+        <a href="/show/in-stock"><span class="me-3">Na składzie</span></a>
+        <a href="/show/out-of-stock/"><span class="me-3">Brak na składzie</span></a>
+        <a href="/show/more-than/"><span>Na składzie > 5</span></a>
+        </div>
         <div class="table-responsive">
         <table class="mt-5 table table-hover ">
         <thead>
@@ -19,17 +36,7 @@
             <th scope="row">{{ product.id }}</th>
             <td>{{ product.name }}</td>
             <td>{{ product.amount }}</td>
-            <td class="d-flex ">
-                <div class="pe-3">
-                    <a href="/product/{{ product.id }}"><button type="button" class="btn btn-info">Zobacz</button></a>
-                </div>
-                <div class="pe-3">
-                    <a href="/product/edit/{{ product.id }}"><button type="button" class="btn btn-primary">Edytuj</button></a>
-                </div>
-                <div>
-                    <a href="#"><button type="button" class="btn btn-danger">Usuń</button></a>
-                </div>
-            </td>
+            {{ include('table_buttons.html.twig') }}
             </tr>
         {% endfor %}
         
@@ -37,5 +44,9 @@
         </tbody>
         </table>
     </div>
+
+    <div class="mt-3"> 
+        <a href="/add/"><button type="button" class="btn btn-outline-dark btn-lg">Dodaj nowy produkt</button></a>
+     </div>
     </div>
 {% endblock %}
